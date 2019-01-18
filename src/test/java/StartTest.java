@@ -45,6 +45,16 @@ public class StartTest
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
+    public void clickById ( String id )
+    {
+        driver.findElement(By.id( id )).click();
+    }
+
+    public void clickByLink ( String link )
+    {
+        driver.findElement(By.linkText( link )).click();
+    }
+
 
     public void search ( String xPathOne, String xPathTwo, String contain )
     {
@@ -54,10 +64,27 @@ public class StartTest
             WebElement first= spisok.get(i);
             WebElement title= first.findElement(By.xpath( xPathTwo ));
             target= title.getText();
-            System.out.println(target);
+            System.out.println( target );
 
-            boolean isAvalible= target.contains( contain );
-            System.out.println( isAvalible );
+           boolean isAvalible= target.contains( contain );
+           System.out.println( isAvalible );
+        }
+    }
+
+    public void doubleSearch ( String xPathOne, String xPathTwo, String contain )
+    {
+        List<WebElement> spisok= driver.findElements(By.xpath( xPathOne ));
+        for ( int i= 0; i < spisok.size(); i++ )
+        {
+            List<WebElement> secondSpisok= driver.findElements(By.xpath( xPathTwo ));
+            for ( WebElement title : secondSpisok )
+            {
+                target= title.getText();
+                System.out.println( target );
+
+                boolean isAvalible= target.contains( contain );
+                System.out.println( isAvalible );
+            }
         }
     }
 
@@ -77,17 +104,6 @@ public class StartTest
             System.out.println( isAvalible );
         }
     }
-
-    public void clickById ( String id )
-    {
-        driver.findElement(By.id( id )).click();
-    }
-
-    public void clickByLink ( String link )
-    {
-        driver.findElement(By.linkText( link )).click();
-    }
-
 
     public void close ()
     {
