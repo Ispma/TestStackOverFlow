@@ -34,5 +34,6 @@ public class RunTest extends StartTest
         doubleSearch("//div[contains(@class, 'question-summary')]", ".//a[contains(@class, 'post-tag')]", "webdriver");
         //Выход из браузера
         close();
+
     }
 }
