@@ -61,34 +61,36 @@ public class StartTest
     }
 
 
-    public void search ( String xPathOne, String xPathTwo, String contain )
+    public void search ( String xPathOne, String xPathTwo, String content )
     {
-        List<WebElement> spisok= driver.findElements(By.xpath( xPathOne ));
-        for ( int i= 0; i < spisok.size(); i++ )
+        List<WebElement> list= driver.findElements(By.xpath( xPathOne ));
+        for ( int i= 0; i < list.size(); i++ )
         {
-            WebElement first= spisok.get(i);
+            WebElement first= list.get(i);
             WebElement title= first.findElement(By.xpath( xPathTwo ));
             target= title.getText();
             System.out.println( target );
+            System.out.println( content );
 
-           boolean isAvalible= target.contains( contain );
+           boolean isAvalible= target.contains( content );
            System.out.println( isAvalible );
         }
         System.out.println(" ");
     }
 
-    public void doubleSearch ( String xPathOne, String xPathTwo, String contain )
+    public void doubleSearch ( String xPathOne, String xPathTwo, String content )
     {
-        List<WebElement> spisok= driver.findElements(By.xpath( xPathOne ));
-        for ( int i= 0; i < spisok.size(); i++ )
+        List<WebElement> list= driver.findElements(By.xpath( xPathOne ));
+        for ( int i= 0; i < list.size(); i++ )
         {
             List<WebElement> secondSpisok= driver.findElements(By.xpath( xPathTwo ));
             for ( WebElement title : secondSpisok )
             {
                 target= title.getText();
                 System.out.println( target );
+                System.out.println( content );
 
-                boolean isAvalible= target.contains( contain );
+                boolean isAvalible= target.contains( content );
                 System.out.println( isAvalible );
             }
         }
