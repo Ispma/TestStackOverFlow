@@ -16,7 +16,7 @@ public class StartTest
     private WebDriverWait wait;
     public String target;
     public String secondTarget;
-    public HashMap<String, String> validTheme= new HashMap();
+    public HashMap < String, String > validTheme= new HashMap< String, String >();
 
     public void one ()
     {
@@ -39,20 +39,25 @@ public class StartTest
     }
 
 
-    public void click( String xPath )
+    public void click( String xPath ) throws InterruptedException
     {
         driver.findElement(By.xpath(xPath)).click();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Thread.sleep(5000);
     }
 
-    public void clickById ( String id )
+    public void clickById ( String id ) throws InterruptedException
     {
         driver.findElement(By.id( id )).click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Thread.sleep(5000);
     }
 
-    public void clickByLink ( String link )
+    public void clickByLink ( String link ) throws InterruptedException
     {
         driver.findElement(By.linkText( link )).click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Thread.sleep(5000);
     }
 
 
@@ -69,6 +74,7 @@ public class StartTest
            boolean isAvalible= target.contains( contain );
            System.out.println( isAvalible );
         }
+        System.out.println(" ");
     }
 
     public void doubleSearch ( String xPathOne, String xPathTwo, String contain )
@@ -86,6 +92,7 @@ public class StartTest
                 System.out.println( isAvalible );
             }
         }
+        System.out.println(" ");
     }
 
     public void check ()
@@ -103,6 +110,7 @@ public class StartTest
             System.out.println(secondTarget);
             System.out.println( isAvalible );
         }
+        System.out.println(" ");
     }
 
     public void close ()
