@@ -64,45 +64,59 @@ public class StartTest
 
     public void search ( String xPathOne, String xPathTwo, String content )
     {
-        List<WebElement> list= driver.findElements(By.xpath( xPathOne ));
-        for ( int i= 0; i < list.size(); i++ )
+        List<WebElement> list = driver.findElements(By.xpath(xPathOne));
+
+        for ( int i = 0; i < list.size(); i++ )
         {
             WebElement first= list.get(i);
-            WebElement title= first.findElement(By.xpath( xPathTwo ));
+            WebElement title= first.findElement(By.xpath(xPathTwo));
             target= title.getText();
-            System.out.println( target );
-            System.out.println( content );
+            System.out.println(target);
+            System.out.println(content);
 
-           boolean isAvailable= target.contains( content );
-           System.out.println( isAvailable );
-           Assert.assertEquals( isAvailable, true );
+            boolean isAvailable= false;
+            if ( target.contains(content) )
+            {
+                isAvailable= true;
+            }
+            Assert.assertEquals(isAvailable, true);
+            System.out.println(" ");
         }
-        System.out.println(" ");
     }
 
     public void doubleSearch ( String xPathOne, String xPathTwo, String content )
     {
-        List<WebElement> list= driver.findElements(By.xpath( xPathOne ));
-        for ( int i= 0; i < list.size(); i++ )
+        List<WebElement> list= driver.findElements(By.xpath( xPathOne )); // Формируем список всплывших вопросов
+        for ( WebElement element : list )
         {
-            List<WebElement> secondList= driver.findElements(By.xpath( xPathTwo ));
+            boolean isAvailable= false;
+            List<WebElement> secondList= element.findElements(By.xpath( xPathTwo )); // Находим нужные элементы именно в данном списке
             for ( WebElement title : secondList )
             {
                 target= title.getText();
                 System.out.println( target );
-                System.out.println( content );
 
-                boolean isAvailable= target.contains( content );
+                if ( target.contains( content ) )
+                {
+                    isAvailable= true;
+                }
                 System.out.println( isAvailable );
-                Assert.assertEquals( isAvailable, true );
             }
+            Assert.assertEquals(isAvailable, true);
         }
         System.out.println(" ");
     }
 
-    public void check ()
+    public void check ( String xPathOne, String xPathTwo )
     {
-        System.out.println( validTheme.entrySet() );
+        List<WebElement> list= driver.findElements(By.xpath( xPathOne));
+        for ( WebElement element : list )
+        {
+            String title= element.getText();
+            title= title.substring(3);
+            String href= element.getAttribute("href");
+            validTheme.put( title, href );
+        }
         for ( Map.Entry<String, String> entry : validTheme.entrySet() )
         {
             target= entry.getKey();
@@ -111,12 +125,12 @@ public class StartTest
 
             driver.get(link);
 
-            secondTarget= driver.findElement(By.xpath("//h1[contains(@class, 'fs-headline')]/a[contains(@class, 'question-hyperlink')]")).getText();
+            secondTarget= driver.findElement(By.xpath( xPathTwo )).getText();
             boolean isAvailable= secondTarget.contains( target );
             System.out.println(secondTarget);
             Assert.assertEquals( isAvailable, true );
         }
-        System.out.println(" ");
+        System.out.println( " " );
     }
 
     public void close ()
