@@ -85,8 +85,8 @@ public class StartTest
         List<WebElement> list= driver.findElements(By.xpath( xPathOne ));
         for ( int i= 0; i < list.size(); i++ )
         {
-            List<WebElement> secondSpisok= driver.findElements(By.xpath( xPathTwo ));
-            for ( WebElement title : secondSpisok )
+            List<WebElement> secondList= driver.findElements(By.xpath( xPathTwo ));
+            for ( WebElement title : secondList )
             {
                 target= title.getText();
                 System.out.println( target );
