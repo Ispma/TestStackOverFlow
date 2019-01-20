@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -72,8 +73,9 @@ public class StartTest
             System.out.println( target );
             System.out.println( content );
 
-           boolean isAvalible= target.contains( content );
-           System.out.println( isAvalible );
+           boolean isAvailable= target.contains( content );
+           System.out.println( isAvailable );
+           Assert.assertEquals( isAvailable, true );
         }
         System.out.println(" ");
     }
@@ -90,8 +92,9 @@ public class StartTest
                 System.out.println( target );
                 System.out.println( content );
 
-                boolean isAvalible= target.contains( content );
-                System.out.println( isAvalible );
+                boolean isAvailable= target.contains( content );
+                System.out.println( isAvailable );
+                Assert.assertEquals( isAvailable, true );
             }
         }
         System.out.println(" ");
@@ -99,6 +102,7 @@ public class StartTest
 
     public void check ()
     {
+        System.out.println( validTheme.entrySet() );
         for ( Map.Entry<String, String> entry : validTheme.entrySet() )
         {
             target= entry.getKey();
@@ -108,9 +112,9 @@ public class StartTest
             driver.get(link);
 
             secondTarget= driver.findElement(By.xpath("//h1[contains(@class, 'fs-headline')]/a[contains(@class, 'question-hyperlink')]")).getText();
-            boolean isAvalible= secondTarget.contains( target );
+            boolean isAvailable= secondTarget.contains( target );
             System.out.println(secondTarget);
-            System.out.println( isAvalible );
+            Assert.assertEquals( isAvailable, true );
         }
         System.out.println(" ");
     }
