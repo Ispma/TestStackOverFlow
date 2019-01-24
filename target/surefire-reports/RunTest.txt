@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: RunTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 4,254.429 s <<< FAILURE! - in RunTest
+firdTest(RunTest)  Time elapsed: 359.433 s  <<< FAILURE!
+java.lang.AssertionError: expected:<false> but was:<true>
+	at RunTest.firdTest(RunTest.java:51)
+
+firstTest(RunTest)  Time elapsed: 364.719 s  <<< FAILURE!
+java.lang.AssertionError: expected:<false> but was:<true>
+	at RunTest.firstTest(RunTest.java:25)
+
